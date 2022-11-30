@@ -2,12 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import axios from 'axios';
+
+axios
+  .get('http://localhost:3001/notes')
+  .then(response => console.log(response.data))
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const notes = [
   {
     id: 1,
-    content: "HTML is easy",
+    content: "HTM is easy",
     date: "2019-05-30T17:30:31.098Z",
     important: true,
   },
