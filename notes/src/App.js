@@ -20,10 +20,16 @@ const App = () => {
     const note = notes.find(n => n.id === id)
     const changedNote = { ...note, important: !note.important }
 
-    noteService.update(note.id, changedNote)
+    noteService
+      .update(note.id, changedNote)
       .then(updatedNote => {
         setNotes(notes.map(n => n.id !== id ? n : updatedNote))
-    })
+      })
+      .catch(erro => {
+        alert(`the note '${note.content}' was already deleted from server`)
+        setNotes(notes.filter(n => n.id === id))
+      })
+    
   }
 
   const addNote = (event) => {
