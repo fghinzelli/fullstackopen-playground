@@ -26,9 +26,23 @@ app.get('/', (resquest, response) => {
   response.send('<h1>Home</h1>');
 })
 
+app.get('/api/notes/:id', (request, response) => {
+  const id = Number(request.params.id);
+  const note = notes.find(note => note.id === id)
+
+  if (note) {
+    response.json(note);
+  } else {
+    response.statusMessage = "Current password does not match";
+    response.status(404).end();
+  }
+})
+
 app.get('/api/notes', (request, response) => {
   response.json(notes)
 })
+
+
 
 const PORT = 3001;
 
